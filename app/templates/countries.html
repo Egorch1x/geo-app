@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-8">
+
+    <div class="flex justify-between items-end mb-8">
+        <h1 class="text-3xl font-semibold tracking-tight">
+            Справочник стран
+        </h1>
+        <span class="text-sm text-zinc-500">
+            Всего записей: {{ countries|length }}
+        </span>
+    </div>
+
+    <div class="overflow-x-auto border border-zinc-800 rounded-xl">
+        <table class="w-full">
+            <thead class="bg-zinc-900">
+                <tr class="text-left text-sm text-zinc-400">
+                    <th class="px-6 py-4 font-medium">Страна</th>
+                    <th class="px-6 py-4 font-medium">Столица</th>
+                    <th class="px-6 py-4 font-medium">Континент</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-zinc-800">
+                {% for country in countries %}
+                <tr class="hover:bg-zinc-900/60 transition">
+                    <td class="px-6 py-4 font-medium">
+                        {{ country.name }}
+                    </td>
+                    <td class="px-6 py-4 text-zinc-300">
+                        {{ country.capital }}
+                    </td>
+                    <td class="px-6 py-4 text-zinc-500 text-sm">
+                        {{ country.continent }}
+                    </td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <td colspan="3" class="px-6 py-12 text-center text-zinc-500">
+                        База данных пуста
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+{% endblock %}

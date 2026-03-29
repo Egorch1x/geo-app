@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-md mx-auto bg-zinc-900 border border-zinc-800 rounded-xl p-8 shadow-lg">
+
+    <h2 class="text-2xl font-semibold mb-6 tracking-tight">
+        Добавить страну
+    </h2>
+
+    <form method="POST" class="space-y-5">
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.name.label(class="block text-sm text-zinc-400 mb-2") }}
+            {{ form.name(class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 focus:outline-none focus:border-zinc-600 transition") }}
+
+            {% for error in form.name.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div>
+            {{ form.capital.label(class="block text-sm text-zinc-400 mb-2") }}
+            {{ form.capital(class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 focus:outline-none focus:border-zinc-600 transition") }}
+
+            {% for error in form.capital.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div>
+            {{ form.continent.label(class="block text-sm text-zinc-400 mb-2") }}
+            {{ form.continent(class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 focus:outline-none focus:border-zinc-600 transition") }}
+
+            {% for error in form.continent.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        {{ form.submit(class="w-full bg-white text-black py-2.5 rounded-lg font-medium hover:bg-zinc-200 transition cursor-pointer") }}
+
+    </form>
+
+</div>
+
+{% endblock %}

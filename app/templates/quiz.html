@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-12 bg-zinc-900 border border-zinc-800 rounded-xl p-8 md:p-12">
+
+    {% if country %}
+
+        <span class="text-xs uppercase tracking-wider text-zinc-500 block mb-3">
+            Вопрос викторины
+        </span>
+
+        <h2 class="text-3xl md:text-4xl font-semibold mb-8 leading-tight">
+            Назовите столицу страны
+            <br>
+            <span class="text-zinc-400">
+                {{ country.name }}
+            </span>
+        </h2>
+
+        <form method="POST" action="" class="space-y-4">
+            {{ form.hidden_tag() }}
+
+            <div>
+                {{ form.answer(
+                    class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-lg focus:outline-none focus:border-zinc-600 transition",
+                    placeholder="Введите название столицы..."
+                ) }}
+
+                {% for error in form.answer.errors %}
+                    <p class="text-red-400 text-sm mt-2">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+
+            {{ form.submit(
+                class="w-full bg-white text-black py-3 rounded-lg font-medium hover:bg-zinc-200 transition cursor-pointer"
+            ) }}
+
+        </form>
+
+    {% else %}
+
+        <div class="text-center py-8">
+            <h2 class="text-2xl font-semibold mb-3">
+                Нет данных для игры
+            </h2>
+
+            <p class="text-zinc-400 mb-6">
+                Сначала добавьте страны в справочник
+            </p>
+
+            <a href="{{ url_for('main.add_country') }}"
+               class="inline-block bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-zinc-200 transition">
+                Добавить страну
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}
