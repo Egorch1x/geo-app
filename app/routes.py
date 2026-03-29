@@ -1,3 +1,4 @@
+"""Module for application routes."""
 from flask import Blueprint, render_template, url_for, flash, redirect, request, session
 from app import db
 from app.models import Country
@@ -7,15 +8,18 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
+    """Render the home page."""
     return render_template('index.html', title='Главная')
 
 @main.route('/countries')
 def countries_list():
+    """Render the all countries page."""
     all_countries = Country.query.all()
     return render_template('countries.html', countries=all_countries)
 
 @main.route('/add_country', methods=['GET', 'POST'])
 def add_country():
+    """Render the page for adding new country."""
     form = CountryForm()
     if form.validate_on_submit():
         new_country = Country(
@@ -32,6 +36,7 @@ def add_country():
 
 @main.route('/quiz', methods=['GET', 'POST'])
 def quiz():
+    """Render the page for quiz play."""
     form = QuizAnswerForm()
 
     country_id = session.get('quiz_country_id')

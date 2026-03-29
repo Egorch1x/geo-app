@@ -1,6 +1,8 @@
+"""Module for application routes."""
 from app import db
 
 class Country(db.Model):
+    """Models for countries."""
     __tablename__ = 'countries'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -12,8 +14,8 @@ class Country(db.Model):
     def __repr__(self):
         return f'<Страна {self.name}>'
 
-
 class QuizResult(db.Model):
+    """Models for quiz results."""
     __tablename__ = 'quiz_results'
 
     id = db.Column(db.Integer, primary_key=True)
